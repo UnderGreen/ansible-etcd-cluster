@@ -14,6 +14,7 @@
   group:
     name: '{{ etcd_group }}'
     state: present
+  when: etcd_group != 'root'
 
 - name: create etcd user
   become: yes
@@ -23,6 +24,7 @@
     group: '{{ etcd_group }}'
     home: '{{ etcd_data_dir }}'
     state: present
+  when: etcd_user != 'root'
 
 - name: create dirs...
   become: yes
